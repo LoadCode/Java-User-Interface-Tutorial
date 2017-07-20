@@ -1,6 +1,6 @@
-##Interfaces Gráficas en Java
+## Interfaces Gráficas en Java
 
-###Índice
+### Índice
 -	[El JFrame y las Ventanas](#JFrameyVentanas)
 	-	[Métodos Relevantes del JFrame](#MetodosRelevantesDeJFrame)
 	-	[Contenedor del JFrame](#ContenedorDelJFrame)
