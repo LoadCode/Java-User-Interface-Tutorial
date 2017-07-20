@@ -4,16 +4,22 @@
 -	[El JFrame y las Ventanas](#JFrameyVentanas)
 	-	[Métodos Relevantes del JFrame](#MetodosRelevantesDeJFrame)
 	-	[Contenedor del JFrame](#ContenedorDelJFrame)
+
 -	[Widgets (Elementos de Interfaz)](#Widgets)
 	-	[Los Botones (JButton)](#JButton)
 	-	[Etiquetas de Texto (JLabel)](#JLabel)
 	-	[Entradas de Texto (JTextField)](#JTextField)
 	-	[Cajas de Verificación (JCheckBox)](#JCheckBox)
 	-	[Botones Radiales (JRadioButton)](#JRadioButton)
-	-	[Listas Desplegables]
+	-	[Listas Desplegables]()
+
 -	[Layouts](#Layouts)
--	[Selección de Archivos y Directorios]
--	[Cajas de Información]
+	- [BorderLayout]()
+	- [GridLayout]()
+	- [FlowLayout]()
+
+-	[Selección de Archivos y Directorios]()
+-	[Cajas de Información]()
 
 ###<a id="JFrameyVentanas">JFrame y las Ventanas</a>
 
