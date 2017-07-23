@@ -202,7 +202,7 @@ public class Border extends JFrame
 ```
 El la ventana descrita en el código anterior se presenta en la siguiente figura:
 
-![](border.png)
+![](./border.png)
 
 Tal como se puede apreciar, en este caso para el **BorderLayout**, el método **.add()** recibe a demás del elemento a ubicar, un parámetro adicional indicando la orientación.
 
