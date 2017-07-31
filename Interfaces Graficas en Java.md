@@ -8,6 +8,7 @@
 -	[Widgets (Elementos de Interfaz)](#Widgets)
 	-	[Los Botones (JButton)](#JButton)
 	-	[Etiquetas de Texto (JLabel)](#JLabel)
+		-	[Mostrar imagenes en JLabel](#ImageJLabel)
 	-	[Entradas de Texto (JTextField)](#JTextField)
 	-	[Cajas de Verificación (JCheckBox)](#JCheckBox)
 	-	[Botones Radiales (JRadioButton)](#JRadioButton)
@@ -43,20 +44,26 @@ Posee 3 tipos de constructor de los cuales los dos siguientes son las formas má
 
 #### <a id="MetodosRelevantesDeJFrame">Métodos relevantes de JFrame</a>
 A continuación, listaremos y presentaremos una breve descripción de algunos de los métodos más comunes de **JFrame** que utilizaremos en la creación de interfaces gráficas:
-*	**.setBounds(posX, posY, Ancho, Alto)**: Se configura la posición en la cual aparecerá inicialmente.
-*	**.setVisible(bool)**: Si su parámetro tiene presenta un valor **true**, hace visible el contendio del **JFrame** en pantalla.
-*	**.add(widget)**: Agrega un elemento al contenido del **JFrame**.
-*	**.setSize(ancho, alto)**: Modifica las dimensiones de la ventana que se está manipulando.
-*	**.pack()**: Este método configura un tamaño automático necesario para que la todos los elementos de la ventana se muestren, se puede pensar que al hacer uso del mismo, se puede prescindir del método **.setSize** mostrado anteriormente.
-*	**.setTitle(Título)**: Con esto se indica el título que llevará la ventana en su barra superior (la barra de título).
-*	**.setLayout(layoutType)**: Configura el tipo de *layout* que deseamos utilizar dentro del JFrame (**ver: Layouts**).
-*	**.setResizable(bool)**: Cuento su argumento vale *true*, se le permite a la ventana modificar sus dimensiones, cuando el parámetro vale *false* no se puede modificar el tamaño de la ventana en cuestión.
-*	**.setDefaultCloseOperation(acción_cierre)**: Con esta línea se logra que se termine el proceso cuando la ventana se cierre.	Las acciones de cierre pueden ser las siguientes:
 
-	*	**JFrame.EXIT_ON_CLOSE**: Abandona la aplicación.
-	*	**JFrame.DISPOSE_ON_CLOSE**: Libera los recursos asociados a la ventana.
-	*	**JFrame.DO_NOTHING_ON_CLOSE**: No hace nada.
-	*	**JFrame.HIDE_ON_CLOSE**: Cierra la ventana, sin liberar sus recursos.
+|Método| Descripción|
+|---|---|
+|**.setBounds(posX, posY, Ancho, Alto)**| Se configura la posición en la cual aparecerá inicialmente.|
+|**.setVisible(bool)**| Si su parámetro tiene presenta un valor **true**, hace visible el contendio del **JFrame** en pantalla.|
+|**.add(widget)**| Agrega un elemento al contenido del **JFrame**.|
+|**.setSize(ancho, alto)**| Modifica las dimensiones de la ventana que se está manipulando.|
+|**.pack()**| Este método configura un tamaño automático necesario para que la todos los elementos de la ventana se muestren, se puede pensar que al hacer uso del mismo, se puede prescindir del método **.setSize** mostrado anteriormente.|
+|**.setTitle(Título)**| Con esto se indica el título que llevará la ventana en su barra superior (la barra de título)|
+|**.setLayout(layoutType)**| Configura el tipo de *layout* que deseamos utilizar dentro del JFrame (**ver: Layouts**).|
+|**.setResizable(bool)**| Cuento su argumento vale *true*, se le permite a la ventana modificar sus dimensiones, cuando el parámetro vale *false* no se puede modificar el tamaño de la ventana en cuestión.|
+|**.setDefaultCloseOperation(acción_cierre)**| Con esta línea se logra que se termine el proceso cuando la ventana se cierre.|
+
+Las acciones de cierre pueden ser las siguientes:
+
+*	**JFrame.EXIT_ON_CLOSE**: Abandona la aplicación.
+*	**JFrame.DISPOSE_ON_CLOSE**: Libera los recursos asociados a la ventana.
+*	**JFrame.DO_NOTHING_ON_CLOSE**: No hace nada.
+*	**JFrame.HIDE_ON_CLOSE**: Cierra la ventana, sin liberar sus recursos.
+
 
 #### <a id="ContenedorDelJFrame">Contenedor del JFrame</a>
 Como una anotación adicional, es importante comentar que existen dos formas de utilizar el método **.add( )**, en primer lugar se puede simplemente llamar el método desde el propio objeto *JFrame* para agregar un elemento, por ejemplo, a continuación agregaremos un objeto llamado **btn**:
@@ -130,7 +137,166 @@ class MyWindow extends JFrame implements ActionListener
 
 
 ### <a id="JLabel">Etiqueta de Texto (JLabel)</a>
+El objetivo del elemento (widget) de tipo `JLabel` es mostrar información en formato texto, una línea a la vez, la aplicación puede modificar su contenido pero el usuario no puede modificar dicho texto directamente.
+
+Este widget posee difrentes constructores, entre los más comunes podemos destacar los siguientes:
+
+|Constructor|Descripción|
+|---|---|
+|`JLabel()`| Crea una instacia de la clase `JLabel`, sin imagen y con una cadena vacía como texto a mostrar.|
+|`JLabel(String s)`| Crea una instancia de la clase `JLabel` y muestra el texto que contiene la cadena `s`.|
+|`JLabel(Icon i)`| Crea una instacia de `JLabel` que contendrá la imagen especificada.|
+|`JLabel(String s, Icon i, int horizontalAlignment)`| Crea una instancia de `JLabel` con el texto, la imagen y el alineamiento horizontal especificado.|
+
+##### Métodos
+Los métodos utilizados con mayor frecuencia en los `JLabel` son los siguientes:
+
+|Método|Descripción|
+|---|---|
+|String `.getText()`|Retorna un objeto `String` con el contenido de la etiqueta de texto (`JLabel`).|
+|void `.setText(String s)`|Actualiza el texto en el objeto `JLabel` con la cadena `s`.|
+|void `setHorizontalAlignment(int alignment)`|Configura la alineción del contenido del `JLabel` a lo largo del eje X.|
+|Icon `.getIcon()`|Retorna el gráfico que el `JLabel` está mostrando.|
+|int `getHorizontalAlignment()`|Retorna la alineación horizontal del contenido en `JLabel`.|
+
+##### <a id="ImageJLabel">Mostrar imagenes en JLabel</a>
+Un uso adicional (característico además) de las etiquetas (JLabel) es mostrar imágenes, a continuación vamos a ver como imprimir por pantalla dichas imágenes.
+Anteriormente habíamos visto el método `.setIcon` pero no mostramos como usarlo concretamente, pues es muy sencillo, solo basta crear un objeto `ImageIcon` que cargue el recurso (imagen) desde el disco, el procedimiento se explica mejor al ver el código:
+
+```java
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import javax.swing.JFrame;
+import java.awt.FlowLayout;
+
+public class Widgets extends JFrame implements ActionListener
+{
+	JTextField txt;
+	JButton btn;
+	JLabel lbl;
+
+   Widgets()
+	{
+		/*Configuración general de la ventana
+        *
+        *
+        */
+		CreateWidgets();
+	}
+
+	private void CreateWidgets()
+	{
+		/*Creamos el JTextField
+          Creamos el JButton y configuramos el evento
+          Creamos el JLabel
+        */
+
+        /*Agregamos los elementos a la interfaz*/
+		this.add(txt);
+		this.add(btn);
+		this.add(lbl);
+	}
+
+	public void actionPerformed(ActionEvent e)
+	{
+		/*Obtenemos la ruta absoluta de nuestra app con un objeto File*/
+		File fl = new File("");
+
+        /*Cargamos la imagen desde el disco al objeto ImageIcon icon*/
+		ImageIcon icon = new ImageIcon(fl.getAbsolutePath()+"\\"+txt.getText());
+
+        /*Cargamos la imagen en el JLabel para que se muestre en la ventana*/
+        lbl.setIcon(icon);
+
+        /*Imprimimos la ruta de la imagen en consola*/
+		System.out.println("Ruta: " + fl.getAbsolutePath()+"\\"+txt.getText());
+	}
+}
+
+```
+La aplicación desarrollada es semejante a la que se muestra en la siguiente figura al cargar una imagen cuyo nombre es: **twitter.png**.
+
+![](twitter_image.png)
+
+Vale la pena indicar que la carga de imagenes funciona con multiples formatos incluyendo: *jpg, png, jpeg* entre otros.
+
 ### <a id="JTextField">Entrada de Texto (JTextField)</a>
+Un objeto de la clase `JTextField`, es un componente que permite la edición de texto de una sola línea por parte del usuario, es uno de los widgets más utilizados para la interacción con el usuario ya que nos permite obtener la información textual.
+
+Los cuatro (4) constructores más usados se muestran a continuación:
+
+|Constructor|Descripción|
+|---|---|
+|`JTextField`|Crea un objeto de tipo `JTextField` vacío (constructor por defecto)|
+|`JTextField(String s)`|Crea un `JTextField` con una cadena que se muestra por defecto|
+|`JTextField(int columns)`| Crea una entrada de texto con un ancho (en caracteres) definido por el valor de `columns`|
+|`JTextField(String s, int Columns)`|Crea un `JTextField` con un ancho de `Columns` columnas y con una cadena inicial definida por el contenido de `s`|
+
+Los métodos más utilizados para las entradas de texto suelen ser:
+
+|Método|Descripción|
+|---|---|
+|void `.setText(String s)`|Actualiza el contenido del `JTextField` mostrando el texto definido en la cadena `s`|
+|String `.getText()`|Retorna la cadena de texto contenida dentro del `JTextField` actualmente|
+|void `.setHorizontalAlignment(int alignment)`|Configura la alineación del texto en el `JTextField`, los valores están definidos como: `JTextField.LEFT`, `JTextField.CENTER` y `JTextField.RIGHT`|
+|void `addActionListener(ActionListener l)`|Se usa para configurar la "escucha" de eventos provenientes de este `JTextField`|
+|void `void setFont(Font f)`|Configura un nuevo tipo de fuente para la entrada de texto|
+
+A continuación podemos apreciar una sencilla aplicación que haciendo uso de un botón (`JButton`) y una entrada de texto (`JTextField`), nos permitirá cambiar el titulo de nuestra aplicación por el texto introducido en el `JTextField`.
+
+```java
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import java.awt.FlowLayout;
+
+public class Widgets extends JFrame implements ActionListener
+{
+	JTextField txt;
+	JButton btn;
+
+	Widgets()
+	{
+		this.setTitle("Aplicación");
+		this.setBounds(200, 200, 400, 200);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLayout(new FlowLayout());
+		CreateWidgets();
+	}
+
+	private void CreateWidgets()
+	{
+		txt = new JTextField("default", 18);
+		txt.setHorizontalAlignment(JTextField.RIGHT);
+
+		btn = new JButton();
+		btn.setText("Leer Contenido");
+		btn.addActionListener(this);
+
+		this.add(txt);
+		this.add(btn);
+	}
+
+	public void actionPerformed(ActionEvent e)
+	{
+		this.setTitle(txt.getText());
+		System.out.println("Texto: " + txt.getText());
+	}
+}
+```
+
+Finalmente la aplicación descrita por el código anterior, se muestra en la siguiente figura:
+
+![](ventana_jtextfield.png)
+
 ### <a id="JCheckBox">Caja de Verificación (JCheckBox)</a>
 ### <a id="JRadioButton">Botones de Radio (JRadioButton)</a>
 ### <a id="JComboBox">Listas Desplegables (JComboBox)</a>
@@ -264,7 +430,7 @@ Una imagen que representa la ventana implementada con la clase expuesta, se pres
 Es un layout útil, es simple aunque al mismo tiempo límitado en cuanto a la dinámica y las posibilidades de flexibilidad que le puede prestar a nuestras aplicaciones.
 
 ### <a id="FlowLayout">FlowLayout</a>
-FlowLayout es uno de los gestores de organización (Layout Managers) más ferecuentemente utilizados, dada su sencillez, entre sus características más destacadas podemos ver que organiza (por defecto) de izquierda a derecha los elementos que se van agregando al contenedor, y haciendo que cada uno de ellos ocupe únicamente lo que necesita (en cuanto a espacio); los componentes van apareciendo centrados en la interfaz (el contenedor) y cada nuevo elemento se va agregando al costado derecho, en caso de que el espacio sea insuficiente se comenzarán a organizar los elementos en una nueva fila (se creará una nueva fila de elementos en la parte inferior a la actual)
+FlowLayout es uno de los gestores de organización (Layout Managers) más ferecuentemente utilizados dada su sencillez, entre sus características más destacadas podemos ver que organiza (por defecto) de izquierda a derecha los elementos que se van agregando al contenedor, y haciendo que cada uno de ellos ocupe únicamente lo que necesita (en cuanto a espacio); los componentes van apareciendo centrados en la interfaz (el contenedor) y cada nuevo elemento se va agregando al costado derecho, en caso de que el espacio sea insuficiente se comenzarán a organizar los elementos en una nueva fila (se creará una nueva fila de elementos en la parte inferior a la actual)
 
 El siguiente código muestra como configurar el FlowLayout en un JFrame (o cualquier otro contenedor).
 ```java
